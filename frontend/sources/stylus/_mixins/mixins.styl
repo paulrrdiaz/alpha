@@ -1,0 +1,22 @@
+/**
+* Mixins
+* @class Mixins
+*/
+
+// fontFace
+fontFace($fontFace) {
+	font-family $fontFace
+	font-style normal
+	font-weight normal
+	src url($fontsPath+$fontFace+'/'+$fontFace+'.eot');
+	src url($fontsPath+$fontFace+'/'+$fontFace+'.eot?#iefix') format('embedded-opentype'),
+		url($fontsPath+$fontFace+'/'+$fontFace+'.woff') format('woff'),
+		url($fontsPath+$fontFace+'/'+$fontFace+'.ttf') format('truetype'),
+ 		url($fontsPath+$fontFace+'/'+$fontFace+'.svg#'+$fontFace) format('svg');
+}
+
+em(size, parentFontSize = 0)
+	if parentFontSize == 0
+		font-size round(( size / $baseFont )em , 3)
+	else
+		font-size round(( size / parentFontSize )em , 3)
