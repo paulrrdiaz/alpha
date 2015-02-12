@@ -1,4 +1,4 @@
-# Alfa
+# Alpha
 
 ### The structure that you'll see, after clone the project, it's something like this...
 

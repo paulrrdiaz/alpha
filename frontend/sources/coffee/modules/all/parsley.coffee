@@ -4,8 +4,8 @@ Initialize parsley.js
 @author @paulrrdiaz
 ###
 yOSON.AppCore.addModule "parsley", (Sb) ->
+    log 'parsley...'
     st =
-
     dom = {}
     catchDom = ->
         return
@@ -30,4 +30,4 @@ yOSON.AppCore.addModule "parsley", (Sb) ->
         init: initialize
     }
 
-, ['js/dist/libs/parsleyjs/src/i18n/es.js', 'js/dist/libs/parsleyjs/dist/parsley.js']
+, ['js/libs/parsleyjs/src/i18n/es.js', 'js/libs/parsleyjs/dist/parsley.js']

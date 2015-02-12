@@ -4,3 +4,33 @@
  * @class nav
  * @author @paulrrdiaz
 */
+
+nav
+	position fixed
+	top 160px
+	right -138px
+	> div
+		display inline-block
+		vertical-align top
+		background $blue_01
+		text-align center
+		padding 10px 15px
+		i
+			color white
+	> ul
+		display inline-block
+		background $skyblue
+		margin 0 0 0 -4px
+		> li
+			> a
+				display block
+				padding 10px 15px
+				border-right 5px solid $skyblue
+				transition(border .3s linear 0s)
+				&:hover
+					border-right 5px solid $blue_01
+			i
+				em(16px)
+				margin 0 5px 0 0
+			h4
+				display inline-block
