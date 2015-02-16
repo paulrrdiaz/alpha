@@ -5,7 +5,7 @@ var path = {
 	coffee : '../sources/coffee/',
 	static : {
 		icons : '../sources/static/icons/',
-		sprites : '../sources/static/img/sprites/',
+		sprites : '../sources/static/img/sprite/',
 		plugins : '../sources/static/img/plugins/',
 		fonts : '../sources/static/fonts/'
 	},
