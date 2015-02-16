@@ -1,4 +1,7 @@
 # Alpha
+> Is a pseudo workflow for frontend developments, it's built over preprocessors: Jade for html, Stylus for css and Coffeescript for javascript.
+> This works thanks Gulp, you can see the gulpfile.js for understand the defaults tasks and feel free to change whatever you want for your project.
+> Also, we're using Bower to manage dependencies that you can add or delete from bower.json
 
 ### The structure that you'll see, after clone the project, it's something like this...
 
@@ -11,6 +14,7 @@
 $ sudo npm install -g gulp
 $ sudo npm install -g bower
 ```
+### Clone the repo, copy the frontend' folder and paste it 
 ### Then install dependencies
 ```sh
 $ sudo npm install -d
