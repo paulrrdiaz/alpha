@@ -3,26 +3,28 @@
 > This works thanks Gulp, you can see the gulpfile.js for understand the defaults tasks and feel free to change whatever you want for your project.
 > Also, we're using Bower to manage dependencies that you can add or delete from bower.json
 
-### The structure that you'll see, after clone the project, it's something like this...
 
-![subl](http://oi58.tinypic.com/4imtck.jpg)
+### First of all
+Clone the repo and you'll get something like this:
 
-> [see complete structure](http://oi57.tinypic.com/212v85w.jpg)
-
-### First of all, you need to install gulp and bower globally
+![alt text](http://i60.tinypic.com/zl505i.png "Title")
+ 
+Go the automatization folder and run the **.folder.sh** file:
 ```sh
-$ sudo npm install -g gulp
-$ sudo npm install -g bower
+$ sudo bash .folder.sh
 ```
-### Clone the repo, copy the frontend' folder and paste it 
-### Then install dependencies
+If you are using OSX, could try to edit the .local_osx.sh and then run the file:  
 ```sh
-$ sudo npm install -d
+$ sudo bash .local_osx.sh
 ```
-### After that you have to download libraries from bower
-> If is necessary you can change the directory, just modify the file .bowerrc***
-
+Be sure that you have install gulp and bower already, if not, just run:
 ```sh
+$ sudo npm install gulp -g
+$ sudo npm install bower -g
+```
+After that, you need to install node's package and the bower dependencies:
+```sh
+$ sudo npm install
 $ bower install
 ```
 ### And Finally

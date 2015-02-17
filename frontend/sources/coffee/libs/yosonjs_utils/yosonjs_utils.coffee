@@ -191,7 +191,7 @@ setTimeout( ()->
         controller.type = 'text/css'
         controller.rel = 'stylesheet'
         controller.media = 'all'
-        controller.href = yOSON.statHost+'css/modules/'+yOSON.controller+'/'+yOSON.controller+'.css'+yOSON.statVers
+        controller.href = yOSON.statHost+'css/modules/'+yOSON.controller+'/'+yOSON.controller+'.css'
 
         styleController = document.getElementsByTagName('link')[document.getElementsByTagName('link').length-1]
         styleController.parentNode.insertBefore(controller, styleController)

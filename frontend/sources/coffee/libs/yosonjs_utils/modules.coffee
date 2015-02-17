@@ -4,7 +4,7 @@ yOSON.AppSchema.modules =
 			"index":
 				"actions":
 					"index": () ->
-						yOSON.AppCore.runModule "animatingNav"
+						yOSON.AppCore.runModule "empty"
 						return
 					"by_default": () ->
 						return

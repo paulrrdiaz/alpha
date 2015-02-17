@@ -4,6 +4,7 @@ empty module
 @author @paulrrdiaz
 ###
 yOSON.AppCore.addModule "empty", (Sb) ->
+    log 'empty...'
     st =
         empty : '.empty'
 
@@ -21,7 +22,7 @@ yOSON.AppCore.addModule "empty", (Sb) ->
         $.extend st, oP
         catchDom()
         suscribeEvents()
-        functions.log()
+        #functions.log()
         return
 
     return {
