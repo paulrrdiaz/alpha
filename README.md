@@ -13,7 +13,11 @@ Go the automatization folder and run the **.folder.sh** file:
 ```sh
 $ sudo bash .folder.sh
 ```
-If you are using OSX, could try to edit the .local_osx.sh and then run the file:  
+After that you'll see this
+
+![alt text](http://i59.tinypic.com/ih4jk1.png "Title")
+
+If you are using OSX, could try to edit the .local_osx.sh for config virtual host and then run the file:  
 ```sh
 $ sudo bash .local_osx.sh
 ```
@@ -27,5 +31,15 @@ After that, you need to install node's package and the bower dependencies:
 $ sudo npm install
 $ bower install
 ```
-### And Finally
-> Remember analyze the 'gulpfile.js', you can custom or change any task that you want to. Don't forget that you just need to make changes at Frontend folder, the gulp tasks were made for easier your life.
+And finally run every task in the gulpfile.js
+```sh
+$ gulp
+```
+> **Tasks:**
+
+> - gulp - run task default
+> - gulp html - compile jade
+> - gulp css - compile stylus
+> - gulp js - compile coffeescript
+> - gulp fonts - join every .svg in static/icons folder, generate icons.styl and the fonts in static/fonts/icons
+> - gulp sprite - compile the images in static/img/sprite to make a sprite and minified

@@ -162,5 +162,5 @@ gulp.task('sprite', function () {
 
 // gulp
 gulp.task('default', function (cb) {
-    runSequence('html', 'css', 'js', 'fonts', cb);
+    runSequence('html', 'fonts', 'sprite', 'css', 'js', cb);
 });
