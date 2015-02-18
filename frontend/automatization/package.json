@@ -10,6 +10,7 @@
   "author": "@paulrrdiaz",
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.1.6",
     "gulp": "^3.8.10",
     "gulp-coffee": "^2.2.0",
     "gulp-iconfont": "^1.0.0",

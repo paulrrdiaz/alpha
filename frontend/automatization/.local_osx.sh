@@ -1,5 +1,5 @@
 #!/bin/bash
-# just change the project_name and run it
+# just change the project_name and run it, example: project_name="myproject";
 # remember that this bash is based on Apache/2.4.9 - OSX Yosemite
 # you can see your apache' version run it the next line:
 # $ httpd -v
@@ -9,6 +9,7 @@ current_path="$(dirname "$(dirname "${PWD}")")/";
 virtual_path="local."$project_name".com";
 
 sudo chmod 777 $current_path;
+sudo chmod -R 777 $current_path"*";
 sudo echo " "  >> /etc/hosts;
 sudo bash -c "echo 127.0.0.1 "$virtual_path" >> /etc/hosts";
 

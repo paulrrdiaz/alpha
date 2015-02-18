@@ -35,6 +35,7 @@ var
 	spritesmith = require('gulp.spritesmith'),
 	fs = require('fs'),
 	pkg = require('./package.json'),
+	browserSync = require('browser-sync'),
 	notifier = require('node-notifier');
 
 // task watch
@@ -158,6 +159,19 @@ gulp.task('sprite', function () {
   spriteData.css
   	.pipe(plumber())
     .pipe(gulp.dest(path.stylus + '_mixins/'));
+});
+
+// task browser-sync | browser-sync
+gulp.task('browser-sync', function() {
+    return browserSync({
+        server: {
+            baseDir: path.app
+        }
+    });
+});
+// task server
+gulp.task('server', function (cb) {
+    runSequence('browser-sync', 'watch', cb);
 });
 
 // gulp
