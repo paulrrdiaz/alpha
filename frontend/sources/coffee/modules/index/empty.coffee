@@ -4,7 +4,7 @@ empty module
 @author @paulrrdiaz
 ###
 yOSON.AppCore.addModule "empty", (Sb) ->
-    log 'empty...'
+    log 'emptyd...'
     st =
         empty : '.empty'
 

@@ -4,6 +4,7 @@ Add handle to navDiv
 @author @paulrrdiaz
 ###
 yOSON.AppCore.addModule "animatingNav", (Sb) ->
+    log 'animatingNav...'
     st =
         navDiv : 'nav > div'
         navUl : 'nav > ul'
