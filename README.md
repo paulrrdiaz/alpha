@@ -74,7 +74,17 @@ to...
 - page.app = "http://localhost:3000/"
 ```
 that's it...
+
 **PD: if you have any problem with anything, just send a tweet @paulrrdiaz**
+
+### How to use...
+For this small version the views will be in the first level of jade folder, like this:
+
+![alt text](http://i62.tinypic.com/i5zo85.png "Jade folder")
+
+and you set up your css and js module in each view, I mean:
+
+![alt text](http://i58.tinypic.com/seoy6d.png "Set up")
 
 ### Useful links
 - [FrontendLabs - Comunidad de desarrollo front end](http://frontendlabs.io/)
