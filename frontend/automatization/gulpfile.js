@@ -49,14 +49,13 @@ gulp.task('watch', function() {
   ], ['html']);
 
   gulp.watch([
-  	path.stylus + '**/*.styl',
-  	path.stylus + '**/**/*.styl'
+  	path.stylus + '**/*.styl'
   ], ['css']);
 
   gulp.watch([
   	path.static.dummies + '*.json',
   	path.coffee + 'libs/**/*.coffee',
-  	path.coffee + 'modules/**/*.coffee'
+  	path.coffee + 'modules/*.coffee'
   ], ['js']);
 });
 
@@ -79,7 +78,7 @@ gulp.task('html', function() {
 gulp.task('css', function() {
 	return gulp.src([
 		path.stylus + '**/*.styl',
-		path.stylus + '**/**/*.styl',
+		'!' + path.stylus + '**/_*.styl',
 		'!' + path.stylus + '_**/*.styl',
 		'!' + path.stylus + '**/_**/*.styl'
 	])
@@ -102,7 +101,7 @@ gulp.task('coffee', function() {
 	.pipe(coffee())
 	.pipe(gulp.dest(path.js + 'libs/'));
 
-	return gulp.src([path.coffee + 'modules/**/*.coffee'])
+	return gulp.src([path.coffee + 'modules/*.coffee'])
 	.pipe(plumber())
 	.pipe(coffee())
 	.pipe(uglify())
