@@ -1,0 +1,8 @@
+{
+	"state" : 1,
+	"msg" : "Ok",
+	"data" : {
+		"value1" : "description1",
+		"value2" : "description2" 
+	}
+}

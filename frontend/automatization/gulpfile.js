@@ -5,9 +5,11 @@ var path = {
 	coffee : '../sources/coffee/',
 	static : {
 		icons : '../sources/static/icons/',
+		img : '../sources/static/img/',
 		sprites : '../sources/static/img/sprite/',
 		plugins : '../sources/static/img/plugins/',
-		fonts : '../sources/static/fonts/'
+		fonts : '../sources/static/fonts/',
+		dummies : '../sources/static/dummies/'
 	},
 	app : '../../app/',
 	html : '../../app/',
@@ -33,6 +35,7 @@ var
 	iconfontCss = require('gulp-iconfont-css'),
 	imagemin = require('gulp-imagemin'),
 	spritesmith = require('gulp.spritesmith'),
+	jsonminify = require('gulp-jsonminify'),
 	fs = require('fs'),
 	pkg = require('./package.json'),
 	browserSync = require('browser-sync'),
@@ -51,6 +54,7 @@ gulp.task('watch', function() {
   ], ['css']);
 
   gulp.watch([
+  	path.static.dummies + '*.json',
   	path.coffee + 'libs/**/*.coffee',
   	path.coffee + 'modules/**/*.coffee'
   ], ['js']);
@@ -88,7 +92,7 @@ gulp.task('css', function() {
 
 // task js
 gulp.task('js', function (cb) {
-    runSequence('cleanJs', 'coffee', 'concat', cb);
+    runSequence('cleanJs', 'coffee', 'concat', 'dummies', cb);
 });
 
 // task coffee | gulp-coffee
@@ -119,6 +123,13 @@ gulp.task('cleanJs', function() {
 	.pipe(rimraf({ force: true }));
 });
 
+//task dummies
+gulp.task('dummies', function() {
+	return gulp.src([path.static.dummies + '*.json'])
+	.pipe(jsonminify())
+	.pipe(gulp.dest(path.js + 'dummies/'));
+});
+
 // task icons | gulp-iconfont
 gulp.task('icons', function() {
 	return gulp.src([path.static.icons + '*.svg'])
@@ -143,7 +154,7 @@ gulp.task('fonts', ['icons'], function() {
 	.pipe(gulp.dest(path.fonts));
 });
 
-// task sprite \ gulp.spriteminth
+// task sprite | gulp.spriteminth
 gulp.task('sprite', function () {
   var spriteData = gulp.src(path.static.sprites + '*.png')
   .pipe(plumber())
@@ -161,6 +172,13 @@ gulp.task('sprite', function () {
     .pipe(gulp.dest(path.stylus + '_mixins/'));
 });
 
+// task img
+gulp.task('img', function() {
+	return gulp.src([path.static.img + '*.jpg', path.static.img + '*.png'])
+	.pipe(imagemin())
+	.pipe(gulp.dest(path.img));
+});
+
 // task browser-sync | browser-sync
 gulp.task('browser-sync', function() {
     return browserSync({
@@ -176,5 +194,5 @@ gulp.task('server', function (cb) {
 
 // gulp
 gulp.task('default', function (cb) {
-    runSequence('html', 'fonts', 'sprite', 'css', 'js', cb);
+    runSequence('fonts', 'sprite', 'html', 'img', 'css', 'js', cb);
 });
