@@ -16,16 +16,13 @@ head
 	meta(property='og:type', content='#{page.og.type}')
 	meta(property='og:url', content='#{page.url}')
 	
-	link(href='#{page.app}css/modules/all/normalize.css', media='all', rel='stylesheet', type='text/css')
-	link(href='#{page.app}css/modules/all/fonts.css', media='all', rel='stylesheet', type='text/css')
-	link(href='#{page.app}css/modules/all/all.css', media='all', rel='stylesheet', type='text/css')
-	link(href='#{page.app}css/layout/layout.css', media='all', rel='stylesheet', type='text/css')
+	link(href='#{page.app}css/modules/all.css', media='all', rel='stylesheet', type='text/css')
 	
 	link(href='#{page.app}img/favicon.ico', rel='shortcut icon', type='image/x-icon')
 	link(href='#{page.og.image}', rel='icon')
 
 	+ie('if lte IE 9')
-		link(href='#{page.app}css/modules/all/ie.css', media='all', rel='stylesheet', type='text/css')
+		link(href='#{page.app}css/modules/ie.css', media='all', rel='stylesheet', type='text/css')
 		script(src="#{page.app}js/dist/libs/selectivizr/selectivizr.js")
 		script(src="#{page.app}js/dist/libs/html5shiv/dist/html5shiv.js")
 	include ../_partials/head_scripts.jade

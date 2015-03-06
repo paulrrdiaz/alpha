@@ -7,6 +7,8 @@
   "devDependencies": {
     "jquery": "~2.1.3",
     "html5shiv": "~3.7.2",
-    "selectivizr": "~1.0.2"
+    "selectivizr": "~1.0.2",
+    "SuperScrollorama": "~1.0.3",
+    "requirejs-plugins": "~1.0.3"
   }
 }

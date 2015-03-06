@@ -55,7 +55,8 @@ gulp.task('watch', function() {
   gulp.watch([
   	path.static.dummies + '*.json',
   	path.coffee + 'libs/**/*.coffee',
-  	path.coffee + 'modules/*.coffee'
+  	path.coffee + 'modules/*.coffee',
+  	path.coffee + 'modules/**/*.coffee'
   ], ['js']);
 });
 
@@ -91,28 +92,31 @@ gulp.task('css', function() {
 
 // task js
 gulp.task('js', function (cb) {
-    runSequence('cleanJs', 'coffee', 'concat', 'dummies', cb);
+    runSequence('cleanJs', 'libs', 'coffee', 'concat', 'dummies', cb);
 });
 
 // task coffee | gulp-coffee
 gulp.task('coffee', function() {
-	gulp.src([path.coffee + 'libs/**/*.coffee'])
+	return gulp.src([path.coffee + 'modules/*.coffee', path.coffee + 'modules/**/*.coffee'])
+	.pipe(plumber())
+	.pipe(coffee())
+	//.pipe(uglify())
+	.pipe(gulp.dest(path.js + 'modules/'));
+});
+
+// task libs
+gulp.task('libs', function() {
+	return gulp.src([path.coffee + 'libs/**/*.coffee'])
 	.pipe(plumber())
 	.pipe(coffee())
 	.pipe(gulp.dest(path.js + 'libs/'));
-
-	return gulp.src([path.coffee + 'modules/*.coffee'])
-	.pipe(plumber())
-	.pipe(coffee())
-	.pipe(uglify())
-	.pipe(gulp.dest(path.js + 'modules/'));
 });
 
 // task concat | gulp-recursive-concat
 gulp.task('concat', function() {
-	return gulp.src([path.js + 'modules/**/*.js'])
+	return gulp.src([path.js + 'modules/**/*.js', '!' + path.js + 'modules/*.js'])
 	.pipe(plumber())
-	.pipe(recursiveConcat({dist: 'modules/', extname: ".js"}))
+	.pipe(recursiveConcat({dist: 'modules/**/', extname: ".js"}))
 	.pipe(gulp.dest(path.js + 'modules/'));
 });
 

@@ -1,26 +1,7 @@
 extends _layout/layout.jade
 //- index
 block css
-	link(href='#{page.app}css/modules/index/index.css', media='all', rel='stylesheet', type='text/css')
-block yOSON
-	script(type="text/javascript").
-		var yOSON = {
-			"module": "alpha",
-			"controller": "index",
-			"action": "index",
-			"baseHost": "#{page.url}",
-			"statHost": "#{page.app}",
-			"static": true,
-			"AppCore": {},
-			"AppSandbox": {},
-			"AppSchema": {
-			"modules": {},
-				"requires": {}
-			},
-			"tmp" : {
-
-			}
-		}
+	link(href='#{page.app}css/modules/index.css', media='all', rel='stylesheet', type='text/css')
 block content
 	#wrapper
 		.wrapper_center
@@ -31,4 +12,7 @@ block content
 				img(src="#{page.app}img/likeasir.png")
 
 block javascript
-	script(src="#{page.app}js/modules/index/index.js")
+	script(type="text/javascript").
+		require(["all"], function(){
+			require(['../modules/index']);
+		});
