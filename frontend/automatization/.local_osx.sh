@@ -8,8 +8,7 @@ project_name="alpha";
 current_path="$(dirname "$(dirname "${PWD}")")/";
 virtual_path="local."$project_name".com";
 
-sudo chmod 777 $current_path;
-sudo chmod -R 777 $current_path"*";
+sudo chmod -R 777 $current_path;
 sudo echo " "  >> /etc/hosts;
 sudo bash -c "echo 127.0.0.1 "$virtual_path" >> /etc/hosts";
 
