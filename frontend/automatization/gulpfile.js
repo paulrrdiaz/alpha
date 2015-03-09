@@ -25,6 +25,7 @@ var
 	gulp = require('gulp'),
 	jade = require('gulp-jade'),
 	stylus = require('gulp-stylus'),
+	cssVersioner = require('gulp-css-url-versioner'),
 	coffee = require('gulp-coffee'),
 	uglify = require('gulp-uglify'),
 	plumber = require('gulp-plumber'),
@@ -39,6 +40,7 @@ var
 	fs = require('fs'),
 	pkg = require('./package.json'),
 	browserSync = require('browser-sync'),
+	es = require('event-stream'),
 	notifier = require('node-notifier');
 
 // task watch
@@ -87,26 +89,31 @@ gulp.task('css', function() {
 	.pipe(stylus({
 		compress: true
 	}))
+	.pipe(cssVersioner())
 	.pipe(gulp.dest(path.css));
 });
 
 // task js
 gulp.task('js', function (cb) {
-    runSequence('cleanJs', 'coffee', 'concat', 'dummies', cb);
+    runSequence('cleanJs', 'libs', 'modules', 'concat', 'dummies', cb);
 });
 
-// task coffee | gulp-coffee
-gulp.task('coffee', function() {
-	gulp.src([path.coffee + 'libs/**/*.coffee'])
-	.pipe(plumber())
-	.pipe(coffee())
-	.pipe(gulp.dest(path.js + 'libs/'));
-
+// task coffee
+gulp.task('modules', function() {
 	return gulp.src([path.coffee + 'modules/**/*.coffee'])
 	.pipe(plumber())
 	.pipe(coffee())
 	.pipe(uglify())
 	.pipe(gulp.dest(path.js + 'modules/'));
+});
+
+//task libs
+gulp.task('libs', function() {
+	return gulp.src([path.coffee + 'libs/**/*.coffee'])
+	.pipe(plumber())
+	.pipe(coffee())
+	.pipe(uglify())
+	.pipe(gulp.dest(path.js + 'libs/'));
 });
 
 // task concat | gulp-recursive-concat
@@ -172,11 +179,32 @@ gulp.task('sprite', function () {
     .pipe(gulp.dest(path.stylus + '_mixins/'));
 });
 
-// task img
-gulp.task('img', function() {
-	return gulp.src([path.static.img + '*.jpg', path.static.img + '*.png'])
+// task copyImg
+gulp.task('copyImg', function() {
+	var img = gulp.src([
+		path.static.img + '*.jpg',
+		path.static.img + '*.png'
+	])
 	.pipe(imagemin())
 	.pipe(gulp.dest(path.img));
+
+	var plugins = gulp.src([
+		path.static.plugins + '*.jpg',
+		path.static.plugins + '*.png'
+	])
+	.pipe(imagemin())
+	.pipe(gulp.dest(path.plugins));
+
+	return es.concat(img, plugins)
+});
+// task cleanImg | gulp-rimraf
+gulp.task('cleanImg', function() {
+	return gulp.src([path.img + '*.jpg', path.img + '*.png'])
+	.pipe(rimraf({ force: true }));
+});
+// task img
+gulp.task('img', function (cb) {
+    runSequence('cleanImg', 'copyImg', cb);
 });
 
 // task browser-sync | browser-sync
@@ -194,5 +222,11 @@ gulp.task('server', function (cb) {
 
 // gulp
 gulp.task('default', function (cb) {
-    runSequence('fonts', 'sprite', 'html', 'img', 'css', 'js', cb);
+    runSequence('fonts', 'sprite', 'html', 'img', 'css', 'js', function () {
+    	notifier.notify({
+  			title: 'Gulp',
+  			message: 'Every task has been run satisfactory',
+  			sound: true
+			});
+    });
 });
